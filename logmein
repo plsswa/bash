@@ -11,13 +11,11 @@ echo -e "\t\t\tWELCOME TO SERVER LOGINS!!!"
 echo -e "\t\t========================================"
 echo -e "\t\t\t1.Cyclops       - 198.101.131.176\n";
 echo -e "\t\t\t2.Rougue        - 161.47.68.145\n";
-echo -e "\t\t\t3.Gambit        - 159.135.137.184\n";
-echo -e "\t\t\t3.Gambit New    - 159.135.137.185\n";
+echo -e "\t\t\t3.Gambit        - 159.135.137.185\n";
 echo -e "\t\t\t4.RedHat        - 92.52.85.210\n";
 echo -e "\t\t\t5.Beast (DB6)   - 161.47.81.100\n";
 echo -e "\t\t\t6.Darwin(German)- 62.138.236.236\n";
-echo -e "\t\t\t7.Wolverine     - 134.213.188.8\n";
-echo -e "\t\t\t7.Wolverine New - 78.136.60.54\n";
+echo -e "\t\t\t7.Wolverine     - 78.136.60.54\n";
 echo -e "\t\t\t8.IRIS         - 161.47.68.144 2772\n";
 echo -e "\t\t\t9.Zeus         - 173.161.193.197 2112\n";
 echo -e "\t\t\t10.OrangeFTP    - ftp.orangehrm.com\n";
