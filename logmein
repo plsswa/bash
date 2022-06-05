@@ -1,0 +1,92 @@
+#!/bin/bash
+#Auther Praneeth Sam
+
+PASSWD="Lr7eh33L3UpLvLZk"
+#PASSWD="2epABncN8W86uj4a"
+
+echo_server_list()
+{
+
+echo -e "\t\t\tWELCOME TO SERVER LOGINS!!!"
+echo -e "\t\t========================================"
+echo -e "\t\t\t1.Cyclops       - 198.101.131.176\n";
+echo -e "\t\t\t2.Rougue        - 161.47.68.145\n";
+echo -e "\t\t\t3.Gambit        - 159.135.137.184\n";
+echo -e "\t\t\t3.Gambit New    - 159.135.137.185\n";
+echo -e "\t\t\t4.RedHat        - 92.52.85.210\n";
+echo -e "\t\t\t5.Beast (DB6)   - 161.47.81.100\n";
+echo -e "\t\t\t6.Darwin(German)- 62.138.236.236\n";
+echo -e "\t\t\t7.Wolverine     - 134.213.188.8\n";
+echo -e "\t\t\t7.Wolverine New - 78.136.60.54\n";
+echo -e "\t\t\t8.IRIS         - 161.47.68.144 2772\n";
+echo -e "\t\t\t9.Zeus         - 173.161.193.197 2112\n";
+echo -e "\t\t\t10.OrangeFTP    - ftp.orangehrm.com\n";
+echo -e "\t\t\t11.Use Domain   - DNS\n";
+echo -e "\t\t\t12.Magneto      - 78.136.60.53\n";
+echo -e "\t\t\t13.Xavier       - 78.136.60.52\n";
+echo -e "\t\t\t14.Hermes       - 161.47.81.101\n";
+echo -e "\t\t\t15.Artimis      - 161.47.68.144\n";
+echo -e "\t\t\t15.Faith        - 78.136.60.48 2222\n";
+echo -e "\t\t\t15.Pandora      - 78.136.60.48 2332\n";
+echo -e "\t\t\t15.Havok        - 78.136.60.55\n";
+echo -e "\t\t\t15.Sabertooth   - 161.47.81.103\n";
+echo -e "\t\t\t15.Havok New    - 78.136.60.51\n";
+echo -e "\t\t\tWHICH ONE BOTHERS YOU THIS TIME? ENTER <IP> <PORT>";
+read servernum port
+
+}
+
+login_server()
+{
+
+	echo 'YOU SELECTED '$servernum $port;
+	if [ "$servernum" == 'DNS' ] || [ "$servernum" == 'dns' ]
+	then
+		get_ip_from_domain
+		exit 0;
+	elif [ "$port" == '' ] && [ "$servernum" != 'ftp.orangehrm.com' ]
+	then
+		sshpass -p$PASSWD ssh -o TCPKeepAlive=yes -o ServerAliveInterval=50 -p 2112 paul@$servernum;
+	elif [ "$port" == '2112' ]
+	then
+		sshpass -p86march29 ssh -o TCPKeepAlive=yes -o ServerAliveInterval=50 -p 2112 paul@$servernum;
+	elif [ "$servernum" == 'ftp.orangehrm.com' ]
+	then
+		login_ftp
+		exit 0;
+	else
+		sshpass -p$PASSWD ssh -o TCPKeepAlive=yes -o ServerAliveInterval=50 -p $port paul@$servernum;
+	fi
+}
+
+login_ftp()
+{
+	sshpass -p$PASSWD sftp -oPort=2112 paul@ftp.orangehrm.com;
+}
+
+get_ip_from_domain()
+{
+	echo "ENTER THE DOMAIN NAME ?";
+	read domain
+	ip=$(dig +short $domain);
+	echo "YOU ARE CONNECTING TO "$ip; 
+	sshpass -p$PASSWD ssh -o TCPKeepAlive=yes -o ServerAliveInterval=50 -p 2112 paul@$ip;
+
+}
+
+check_command()
+{
+	if system_has "sshpass"; then
+	echo_server_list
+	else
+	echo "Please install sshpass";
+	exit 0
+	fi 
+}
+
+system_has() {
+  type "$1" > /dev/null 2>&1
+}
+
+check_command
+login_server
