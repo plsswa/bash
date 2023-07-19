@@ -1,0 +1,21 @@
+#!/bin/bash
+
+SMTP_SERVER="smtp.mail.mn"
+SMTP_PORT="465"
+SMTP_USERNAME="XXXXX"
+SMTP_PASSWORD="XXXX"
+
+FROM_ADDRESS="healthcheck@mse.mn"
+TO_ADDRESS="praneeth.samarasinghe@lseg.com"
+SUBJECT="Test Email from New MSE monitoring"
+MESSAGE="This is a test email sent from a bash script."
+
+echo -e "Subject: $SUBJECT\n\n$MESSAGE" | \
+    mailx -S smtp="$SMTP_SERVER:$SMTP_PORT" \
+          -S smtp-use-starttls \
+          -S smtp-auth=login \
+          -S smtp-auth-user="$SMTP_USERNAME" \
+          -S smtp-auth-password="$SMTP_PASSWORD" \
+          -r "$FROM_ADDRESS" \
+          -s "$SUBJECT" \
+          "$TO_ADDRESS"
