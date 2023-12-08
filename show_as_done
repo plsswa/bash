@@ -1,11 +1,13 @@
 #!/bin/bash
 #Auther Praneeth Sam.
 
-function show_done() {
+function show_status() {
     if [ $? -eq 0 ]; then
-        echo -e "STATUS OF JOB NUMBER 001 		\e[32m[DONE]\e[0m"  # \e[32m sets text color to green, \e[0m resets it
+        echo -e "$1 \e[32m[DONE]\e[0m"  # \e[32m sets text color to green, \e[0m resets it
     fi
 }
+
+
 
 #ls -ltrh
 clear
