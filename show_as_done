@@ -7,6 +7,19 @@ function show_status() {
     fi
 }
 
+#show_status code
+
+show_status() 
+{
+        if [ $2 = "S" ]
+        then
+                echo
+                echo -e "$1             \e[32m[DONE]\e[0m"  # \e[32m sets text color to green, \e[0m resets it
+        elif [ $2 = "E" ]
+        then
+                echo -e "$1             \e[31m[FAILED]\e[0m"  # \e[32m sets text color to green, \e[0m resets it,
+        fi
+}
 
 
 #ls -ltrh
